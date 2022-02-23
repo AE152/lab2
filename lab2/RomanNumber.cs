@@ -5,7 +5,7 @@ namespace lab2
     public class RomanNumber : ICloneable, IComparable
     {
         private string Rom_num;
-        private ushort Arabic_num;
+        //private ushort Arabic_num;
         //private static ushort[] arabic = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
         //private static string[] roman = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
 
@@ -14,7 +14,7 @@ namespace lab2
         {
             Rom_num = convert_to_roman(n);
             Console.WriteLine(Rom_num);
-            //throw new NotImplementedException();
+            
         }
        /* public RomanNumber(string n)
         {
