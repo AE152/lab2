@@ -113,12 +113,17 @@ namespace lab2
         //Реализация интерфейса IClonable
         public object Clone()
         {
-            throw new NotImplementedException();
+            ushort tmp = convert_to_arabic(Rom_num);
+            return new RomanNumber(tmp);
         }
         //Реализация интерфейса IComparable
         public int CompareTo(object? obj)
         {
-            throw new NotImplementedException();
+            //if (obj == null)
+            //    Exception
+            int num_obj = (int)convert_to_arabic(obj.ToString());
+            int Rom_num_arabic = (int)convert_to_arabic(Rom_num);
+            return Rom_num_arabic - num_obj;
         }
 
     }
