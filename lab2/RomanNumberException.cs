@@ -2,7 +2,10 @@
 
 namespace lab2
 {
-    internal class RomanNumberException
+    class RomanNumberException : Exception
     {
+        public RomanNumberException (string message)
+            : base(message)
+        {}
     }
 }

@@ -5,23 +5,12 @@ namespace lab2
     public class RomanNumber : ICloneable, IComparable
     {
         private string Rom_num;
-        //private ushort Arabic_num;
-        //private static ushort[] arabic = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
-        //private static string[] roman = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
-
-        //Конструктор получает число n, которое должен представлять объект класса
         public RomanNumber(ushort n)
         {
-            Rom_num = convert_to_roman(n);
-            Console.WriteLine(Rom_num);
-            
+            if (n <= 0)
+                throw new RomanNumberException("Ноль в конструкторе!");
+            Rom_num = convert_to_roman(n);                       
         }
-       /* public RomanNumber(string n)
-        {
-            Arabic_num = convert_to_arabic(n);
-            Console.WriteLine(Arabic_num);
-            //throw new NotImplementedException();
-        }*/
         private static string convert_to_roman(ushort n)
         {
             ushort[] arabic = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
@@ -76,10 +65,10 @@ namespace lab2
         {
             ushort n_1 = convert_to_arabic(n1.Rom_num);
             ushort n_2 = convert_to_arabic(n2.Rom_num);
-            /*if ((int)n_1 > (int)n_2)
+            if ((int)n_1 <= (int)n_2)
             {
-                RomanNumberException
-            }*/
+                throw new RomanNumberException("Ошибка при вычитании!");
+            }
             int sub_arabic = (int)n_1 - (int)n_2;
             return new RomanNumber((ushort)sub_arabic);
 
@@ -89,8 +78,7 @@ namespace lab2
         {
             ushort n_1 = convert_to_arabic(n1.Rom_num);
             ushort n_2 = convert_to_arabic(n2.Rom_num);
-            int mul_arabic = (int)n_1 * (int)n_2;
-            Console.WriteLine(mul_arabic);
+            int mul_arabic = (int)n_1 * (int)n_2;           
             return new RomanNumber((ushort)mul_arabic);
         }
         //Целочисленное деление римских чисел
@@ -98,10 +86,10 @@ namespace lab2
         {
             ushort n_1 = convert_to_arabic(n1.Rom_num);
             ushort n_2 = convert_to_arabic(n2.Rom_num);
-            /*if ((int)n_1 % (int)n_2 != 0)
+            if (((int)n_1 % (int)n_2 != 0) || ((int)n_1 < (int)n_2))
             {
-                RomanNumberException
-            }*/
+                throw new RomanNumberException("Ошибка при делении!");
+            }
             int div_arabic = (int)n_1 / (int)n_2;
             return new RomanNumber((ushort)div_arabic);
         }
@@ -119,8 +107,8 @@ namespace lab2
         //Реализация интерфейса IComparable
         public int CompareTo(object? obj)
         {
-            //if (obj == null)
-            //    Exception
+            if (obj == null)
+                throw new RomanNumberException("Ошибка в CompareTo!");
             int num_obj = (int)convert_to_arabic(obj.ToString());
             int Rom_num_arabic = (int)convert_to_arabic(Rom_num);
             return Rom_num_arabic - num_obj;
